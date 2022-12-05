@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <style>
+    header,
+    footer {
+      width: 100%;
+      padding: 1%;
+      background-color: #0cb9c1;
+      color: white;
+    }
+
+    h1 {
+      text-align: center;
+      color: white;
+    }
+
+    .container {
+      width: 100%;
+      height: 590px;
+      position: relative;
+    }
+
+    table {
+      position: absolute;
+      top: 23%;
+      left: 19%;
+    }
+
+    th,
+    td {
+      font-size: 25px;
+      text-align: left;
+      padding: 15px;
+      border-bottom: 1px solid black;
+    }
+
+    footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      text-align: center;
+      font-size: 20px;
+    }
+  </style>
+  <body>
+    <header>
+      <h1>DETEKSI PLAT NOMOR INDONESIA</h1>
+    </header>
+    <div class="container">
+      <table>
+        <tbody>
+          <tr>
+            <th scope="row">Kode Plat Nomor</th>
+            <td>{{ data[0] }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Negara Pendaftaran</th>
+            <td>{{ data[1] }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Kota/Kabupaten Pendaftaran</th>
+            <td>{{ data[2] }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Nomor Plat</th>
+            <td>{{ data[3] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <footer>
+      © {{ year }} Created by
+      <a>BJA Team</a>
+    </footer>
+  </body>
+</html>

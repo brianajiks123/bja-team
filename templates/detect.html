@@ -1,0 +1,63 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container" id="main-detect">
+  <div id="Loader">
+    <div class="d-flex justify-content-center">
+      <div class="spinner-border text-success" style="width: 7rem; height: 7rem" role="status"></div>
+    </div>
+  </div>
+  <div class="form" id="body-form">
+    <form action="/result" method="post" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+      <br /><br />
+      {% if result != "" %}
+      <br /><br />
+      <div class="row justify-content-around" id="body-content">
+        <div class="col-4" id="content-column">
+          <div id="content-detect">
+            <img src="{{ image }}" class="img-fluid img-thumbnail rounded img-detect" />
+          </div>
+        </div>
+        <div class="col-6" id="body-table">
+          <div class="table-responsive" id="table">
+            <table class="table table-borderless table-sm table-info">
+              <tbody>
+                <tr>
+                  <th scope="row">Kode Plat Nomor</th>
+                  <td>: {{ result[0] }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Negara Pendaftaran</th>
+                  <td>: {{ result[1] }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Kota/Kabupaten Pendaftaran</th>
+                  <td>: {{ result[2] }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Nomor Plat</th>
+                  <td>: {{ result[3] }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="mt-2 text-center">
+            <a href="/" class="btn buttons">Kembali</a>
+
+            <form action="/savepdf" method="post" enctype="multipart/form-data">
+              {{ form.hidden_tag() }}
+              <input type="hidden" name="code_plate" value="{{ result[0] }}" />
+              <input type="hidden" name="country" value="{{ result[1] }}" />
+              <input type="hidden" name="city" value="{{ result[2] }}" />
+              <input type="hidden" name="number_plate" value="{{ result[3] }}" />
+              {{ form.save_btn(class="btn buttons") }}
+            </form>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="text-center" id="main-body">
+  <div class="form">
+    {% if image != "" %}
+    <div id="Loader">
+      <div class="d-flex justify-content-center">
+        <div class="spinner-border text-success" role="status"></div>
+      </div>
+    </div>
+    <br /><br /><br /><br />
+    <img src="{{ image }}" id="img" class="img-fluid rounded" />
+    {% endif %}
+    <br /><br />
+    {% if info != True %}
+    <form action="/" method="post" enctype="multipart/form-data">
+      {{ form.hidden_tag() }} {% for msg in get_flashed_messages() %}
+      <div class="container alert alert-warning alert-dismissible fade show alert-home" role="alert">
+        {{ msg }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+      <br />
+      <div class="container my-4" id="content">
+        <div class="mb-3">{{ form.img_input(class="form-control input-form") }}</div>
+      </div>
+      <br />
+      <div class="mb-3">{{ form.send_btn(class="btn buttons-home") }}</div>
+    </form>
+    {% else %}
+    <br />
+    <form action="/detect" method="post" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+      <div class="mb-3">{{ form.process_btn(class="form-control btn buttons-home") }}</div>
+    </form>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}
